@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase name="szd"> Projektkürzel angeben
+
+    <!--Zur Erinnerung falls sich das Programm beenden sollte, bitte ins logfile-->
+    <!--schauen (../logs/prints.txt)-->
+
+    <!--Am Anfang namespaces angeben: Zuerst <prefix> dann <uri>, REIHENFOLGE ist wichtig. -->
+
+    <!--*********************
+            Namespaces
+    *************************-->
+
+    <namespaces>
+        <namespace>
+            <prefix>xhtml</prefix>
+            <uri>http://www.w3.org/1999/xhtml</uri>
+        </namespace>
+        <namespace>
+            <prefix>rdf</prefix>
+            <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+        </namespace>
+        <namespace>
+            <prefix>dc</prefix>
+            <uri>http://purl.org/dc/elements/1.1/</uri>
+        </namespace>
+        <namespace>
+            <prefix>tei</prefix>
+            <uri>http://www.tei-c.org/ns/1.0</uri>
+        </namespace>
+        <namespace>
+            <prefix>cc</prefix>
+            <uri>http://web.resource.org/cc/</uri>
+        </namespace>
+    </namespaces>
+
+
+    <!--*********************
+            XML TESTS
+    *************************-->
+    <test>
+        <url>/o:szd.bibliothek/TEI_SOURCE</url>
+        <xpath>//tei:biblFull</xpath>
+    </test>
+    <test>
+        <url>/o:szd.werke/TEI_SOURCE</url>
+        <xpath>//tei:biblFull</xpath>
+    </test>
+    <test>
+        <url>/o:szd.lebensdokumente/TEI_SOURCE</url>
+        <xpath>//tei:biblFull</xpath>
+    </test>
+    <test>
+        <url>/o:szd.thema1/TEI_SOURCE</url>
+        <xpath>//tei:p</xpath>
+    </test>
+    <test>
+        <url>/o:szd.lebenskalender/TEI_SOURCE</url>
+        <xpath>//tei:event</xpath>
+    </test>
+    <test>
+        <url>/o:szd.personen/TEI_SOURCE</url>
+        <xpath>//tei:person</xpath>
+    </test>
+    <test>
+        <url>/o:szd.standorte/TEI_SOURCE</url>
+        <xpath>//tei:org</xpath>
+    </test>
+
+    <!--****************************
+               HTML Tests
+    ********************************-->
+    <test>
+        <url>/o:szd.bibliothek</url>
+        <matcher>td:matches(^Französisch$)</matcher>
+    </test>
+    <test>
+        <url>/o:szd.werke</url>
+        <matcher>td:matches(^Deutsch$)</matcher>
+    </test>
+    <test>
+        <url>/o:szd.werke</url>
+        <matcher>td:matches(^Deutsch$)</matcher>
+    </test>
+    <!-- volltextsuche -->
+    <test>
+        <url>/query:szd.volltext?params=%241%7Cangst</url>
+        <xpath>//xhtml:div[@id="SZDBIB.302"]</xpath>
+    </test>​
+    <test>
+        <url>/query:szd.volltext?params=%241%7Cangst</url>
+        <matcher>span:matches(^La peur$)</matcher>
+    </test>
+    <!-- personensuche -->
+    <test>
+        <url>/query:szd.person_search?params=%241%7C%3Chttps%3A%2F%2Fgams.uni-graz.at%2Fo%3Aszd.personen%23SZDPER.1%3E</url>
+        <xpath>//xhtml:div[@id="SZDBIB.365"]</xpath>
+    </test>​
+    <!-- standortsuche -->
+    <test>
+        <url>/query:szd.standort_search?params=%241%7C%3Chttps%3A%2F%2Fgams.uni-graz.at%2Fo%3Aszd.standorte%23SZDSTA.17%3E</url>
+        <xpath>//xhtml:div[@id="SZDBIB.406"]</xpath>
+    </test>​
+    <test>
+        <url>/query:szd.standort_search?params=%241%7C%3Chttps%3A%2F%2Fgams.uni-graz.at%2Fo%3Aszd.standorte%23SZDSTA.17%3E</url>
+        <matcher>span:matches(^Abschied$)</matcher>
+    </test>​
+    <test>
+        <url>/o:szd.glossar</url>
+        <matcher>h2:matches(^BIBLIOTHEK$)</matcher>
+    </test>
+    
+    
+   
+ 
+
+    <!--***********************
+            StatusCode Tests
+    ***************************-->
+
+    <!--Beispiel für einen Statuscode test-->
+   <test>
+        <url>/context:szd</url>
+        <statuscode>200</statuscode>
+    </test>
+
+</TestCase>

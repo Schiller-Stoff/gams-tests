@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase name="epsg"> 
+
+    <!--Zur Erinnerung falls sich das Programm beenden sollte, bitte ins logfile-->
+    <!--schauen (../logs/prints.txt)-->
+
+    <!--Am Anfang namespaces angeben: Zuerst <prefix> dann <uri>, REIHENFOLGE ist wichtig. -->
+
+    <!--*********************
+            Namespaces
+    *************************-->
+
+    <namespaces>
+        <namespace>
+            <prefix>xhtml</prefix>
+            <uri>http://www.w3.org/1999/xhtml</uri>
+        </namespace>
+    </namespaces>
+    
+    
+    <!-- Testet XML-Dokument auf count(xpath) &gt; 0 -->
+    
+    <!-- sammlung -->
+    <test>
+        <url>/archive/objects/context:epsg/methods/sdef:Context/get?mode=collection</url>
+        <xpath>//xhtml:h3</xpath>
+    </test>
+    
+     
+    <!-- kontext -->
+    <test>
+        <url>/archive/objects/context:epsg.gattung.bauinschrift/methods/sdef:Context/get?mode=container&amp;context=context:epsg.gattung!context:epsg.gattung.bauinschrift</url>
+        <xpath>//xhtml:ol/xhtml:li</xpath>
+    </test>
+    
+    <!-- tei -->
+    <test>
+        <url>/o:epsg.40</url>
+        <xpath>//xhtml:td[@class='contentChar']</xpath>
+    </test>    
+   
+    
+    <!-- suche gsearch simple -->
+    <test>
+        <url>/search/gsearch?query=&amp;hitPageSize=10&amp;hitPageStart=1&amp;pid=epsg&amp;search=simple&amp;x2=https%3A%2F%2Fgams.uni-graz.at%2Fage%2F3epsg-search.xsl</url>
+        <xpath>//xhtml:li[@class='results even']</xpath>
+    </test>
+    
+    <!-- suche gsearch advanced -->
+    <test>
+        <url>/search/gsearch?query=&amp;hitPageSize=10&amp;hitPageStart=1&amp;pid=epsg&amp;search=advanced&amp;x2=https%3A%2F%2Fgams.uni-graz.at%2Fage%2F3epsg-search.xsl</url>
+        <xpath>//xhtml:li[@class='results even']</xpath>
+    </test>
+    
+   <!-- <!-\- Testet JSON-Dokument auf angegebenen Teilausdruck -\->
+    <test>
+        <url>/o:fercan.1/sdef:IIIF/getTileSources</url>
+        <json>{id: 1}</json>
+    </test>-->
+
+    <!--****************************
+               HTML Tests
+    ********************************-->
+
+    <!--Hier bitte auch immer Reihenfole beachten, zuerst <url> angeben-->
+
+ <!--   <test>
+        <!-\-Eingabe führt direkt auf gewählte server property (in diesem Fall https://gams.uni-graz.at)-\->
+        <url></url>
+        <matcher>h1:matches(^gams$)</matcher>
+    </test>
+
+-->
+
+
+
+    <!--***********************
+            StatusCode Tests
+    ***************************-->
+
+    <!--Beispiel für einen Statuscode test-->
+    <!-- tei to pdf -->
+    <test>
+        <url>/archive/objects/o:epsg.40/methods/sdef:TEI/getPDF</url>
+        <statuscode>200</statuscode>
+    </test>
+
+
+
+    <!-- ************************
+               JSON TESTs
+    *****************************-->
+
+    <!--So würde gegen ein JSON-array getestet werden. Der Test erkennt automatisch wenn er auf ein array stößt
+     und verlangt dann die Angabe der Größe in eckigen Klammern-->
+    <!--<test>-->
+    <!--<url>https://jsonplaceholder.typicode.com/posts</url>-->
+    <!--<json>[100]</json>-->
+<!--    </test>-->
+
+    <!-- Testet JSON-Dokument auf angegebenen Teilausdruck wenn JSON Objekt-->
+    <!--<test>-->
+    <!--<url>https://jsonplaceholder.typicode.com/posts/1</url>-->
+    <!--<json>{id: 1}</json>-->
+    <!--</test>-->
+
+
+
+</TestCase>

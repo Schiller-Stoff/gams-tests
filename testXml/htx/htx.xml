@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase name="htx"> htx
+    
+    <!--Zur Erinnerung falls sich das Programm beenden sollte, bitte ins logfile-->
+    <!--schauen (../logs/prints.txt)-->
+    
+    <!--Am Anfang namespaces angeben: Zuerst <prefix> dann <uri>, REIHENFOLGE ist wichtig. -->
+    
+    <!--*********************
+            Namespaces
+    *************************-->
+    
+    <namespaces>
+        <namespace>
+            <prefix>xhtml</prefix>
+            <uri>http://www.w3.org/1999/xhtml</uri>
+        </namespace>
+        <namespace>
+            <prefix>rdf</prefix>
+            <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+        </namespace>
+        <namespace>
+            <prefix>tei</prefix>
+            <uri>http://www.tei-c.org/ns/1.0</uri>
+        </namespace>
+    </namespaces>
+    
+    
+    <!--*********************
+            XML TESTS
+    *************************-->
+    
+    <!--Home-->
+    <test>
+        <url>/context:htx</url>
+        <xpath>//xhtml:article[contains(@class, 'teaser-img')]//xhtml:div[@id="home_carousel"]//xhtml:img[contains(@title, 'Thomas Farinor')]</xpath>
+    </test>
+    <test>
+        <url>/context:htx</url>
+        <xpath>//xhtml:article[contains(@class, 'teaser-text')]//xhtml:h3[contains(text(), 'Hearth Tax')]</xpath>
+    </test>
+    
+    <!--About-->
+    <test>
+        <url>/archive/objects/context:htx/methods/sdef:Context/get?mode=about</url>
+        <xpath>//xhtml:article[contains(@class, 'about_site')]//xhtml:h2[contains(text(), 'About this web site')]</xpath>
+    </test>
+    <test>
+        <url>/archive/objects/context:htx/methods/sdef:Context/get?mode=about</url>
+        <xpath>//xhtml:article[contains(@class, 'about_links')]//xhtml:img[@id='centre_logo']</xpath>
+    </test>
+    
+    <!--Records-->
+    <test>
+        <url>/archive/objects/context:htx/methods/sdef:Context/get?mode=records</url>
+        <xpath>//xhtml:article[contains(@class, 'records')]//xhtml:a[contains(@href, '/o:htx.Hull')]</xpath>
+    </test>
+    <test>
+        <url>/archive/objects/context:htx/methods/sdef:Context/get?mode=records</url>
+        <xpath>//xhtml:article[contains(@class, 'records')]//xhtml:a[contains(@href, 'o:htx.CityMidx-TNAE179147625')]</xpath>
+    </test>
+    
+    <!--Advanced Search-->
+    <test>
+        <url>/archive/objects/context:htx/methods/sdef:Context/get?mode=advanced_search</url>
+        <xpath>//xhtml:article[contains(@class, 'advanced_search')]//xhtml:div[@role='alert']</xpath>
+    </test>
+    <test>
+        <url>/archive/objects/context:htx/methods/sdef:Context/get?mode=advanced_search</url>
+        <xpath>//xhtml:article[contains(@class, 'advanced_search')]//xhtml:input[@id='keyword']</xpath>
+    </test>
+    
+    <!--Databasket-->
+    <test>
+        <url>/archive/objects/context:htx/methods/sdef:Context/get?mode=databasket</url>
+        <xpath>//xhtml:article[@id='databasket']//xhtml:img[@alt='CSV Download']</xpath>
+    </test>
+    <test>
+        <url>/archive/objects/context:htx/methods/sdef:Context/get?mode=databasket</url>
+        <xpath>//xhtml:article[@id='databasket']//xhtml:table[contains(@class, 'table-hover')]</xpath>
+    </test>
+
+    <!--Search for 'John Lockwood'-->
+    <test>
+        <url>/query:htx.search-fulltext?params=%241%7CJohn%20Lockwood%3B%242%7C%5Bobject%20HTMLInputElement%5D</url>
+        <xpath>//xhtml:article[@id='search_result']//xhtml:tr[@id='e_54387']</xpath>
+    </test>
+    <test>
+        <url>/query:htx.search-fulltext?params=%241%7CJohn%20Lockwood%3B%242%7C%5Bobject%20HTMLInputElement%5D</url>
+        <xpath>//xhtml:tr[@id='e_7274']</xpath>
+    </test>
+
+</TestCase>

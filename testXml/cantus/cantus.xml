@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase name="cantus"> 
+
+    <!--Zur Erinnerung falls sich das Programm beenden sollte, bitte ins logfile-->
+    <!--schauen (../logs/prints.txt)-->
+
+    <!--Am Anfang namespaces angeben: Zuerst <prefix> dann <uri>, REIHENFOLGE ist wichtig. -->
+
+    <!--*********************
+            Namespaces
+    *************************-->
+
+    <namespaces>
+        <namespace>
+            <prefix>cantus</prefix>
+            <uri>https://gams.uni-graz.at/cantus/</uri>
+        </namespace>
+        <namespace>
+            <prefix>xhtml</prefix>
+            <uri>http://www.w3.org/1999/xhtml</uri>
+        </namespace>
+        <namespace>
+            <prefix>rdf</prefix>
+            <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+        </namespace>
+        <namespace>
+            <prefix>dc</prefix>
+            <uri>http://purl.org/dc/elements/1.1/</uri>
+        </namespace>
+        <namespace>
+            <prefix>tei</prefix>
+            <uri>http://www.tei-c.org/ns/1.0</uri>
+        </namespace>
+        <namespace>
+            <prefix>cc</prefix>
+            <uri>http://web.resource.org/cc/</uri>
+        </namespace>
+    </namespaces>
+
+    <!--*****************
+        StatusCode-Tests
+    *********************-->
+
+        <!--Kontext-->
+        <test>
+            <url>/context:cantus</url>
+            <statuscode>200</statuscode>
+        </test>
+        <!--Passau-->
+        <test>
+            <url>/o:cantus.passau.ur/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        <test>
+            <url>/o:cantus.seckau1.pac/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        <test>
+            <url>/o:cantus.stnikola/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        <test>
+            <url></url>
+            <statuscode>200</statuscode>
+        </test>
+        <!--Salzburg-->
+        <test>
+            <url>/o:cantus.salzburg.ur/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        <test>
+            <url>/o:cantus.klosterneuburg.ur/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>    
+        <test>
+            <url>/o:cantus.freising/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        <test>
+            <url>/o:cantus.emmeram.ur/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        <test>
+            <url>/o:cantus.regensburg/sdef:TEI/get?mode=view:start&amp;=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        <test>
+            <url>/o:cantus.brixen/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        <test>
+            <url>/o:cantus.moosburg/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        <test>
+            <url>/o:cantus.seckau1.se1/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        <test>
+            <url>/o:cantus.seckau3/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        <test>
+            <url>/o:cantus.hirsau/sdef:TEI/get?mode=view:start&amp;locale=de</url>
+            <statuscode>200</statuscode>
+        </test>
+        
+
+    <!--*********************
+            XML TESTS
+    *************************-->
+    
+    <!--Tests gegen xhtml-->
+    
+        <!--Passau Stichprobentests-->
+        <test>
+            <url>/o:cantus.passau.sp/sdef:TEI/get?mode=view:edition&amp;locale=de</url>
+            <xpath>//*[@id="office.01011000.P.7"]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.passau.ur/sdef:TEI/get?mode=view:variants&amp;locale=de</url>
+            <xpath>//*[@id="office.08075000.M.971"]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.seckau1.pac/sdef:TEI/get?mode=view:structure&amp;locale=de</url>
+            <xpath>//*[@id="feast.01011000.2"]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.seckau1.pac/sdef:TEI/get?mode=view:structure&amp;locale=de</url>
+            <xpath>//*[@id="feast.01012000.3"]</xpath>
+        </test>
+        
+        <!--Salzburg-->
+        <test>
+            <url>/o:cantus.salzburg.ur/sdef:TEI/get?mode=view:edition&amp;locale=de</url>
+            <xpath>//*[@id="feast.08076000.223"]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.salzburg.sal/sdef:TEI/get?mode=view:facs&amp;locale=de</url>
+            <xpath>//*[@id="SAL.123v"]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.salzburg.ra/sdef:TEI/get?mode=view:edition&amp;locale=de</url>
+            <xpath>//*[@id="feast.07044000.469"]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.salzburg.ur/sdef:TEI/get?mode=view:variants&amp;locale=de</url>
+            <xpath>//*[@id="office.07061000.MI.1219"]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.salzburg.vo/sdef:TEI/get?mode=view:structure&amp;locale=de</url>
+            <xpath>//*[@id="CH3"]</xpath>
+        </test>
+        
+        <!--Klosterneuburg-->
+        <test>
+            <url>/o:cantus.klosterneuburg.ur/sdef:TEI/get?mode=view:edition&amp;locale=de</url>
+            <xpath>//*[@id="feast.add00001.1"]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.klosterneuburg.knb3/sdef:TEI/get?mode=view:edition&amp;locale=de</url>
+            <xpath>//*[@id="maintext"]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.klosterneuburg.ur/sdef:TEI/get?mode=view:variants&amp;locale=de</url>
+            <xpath>//*[@id="V.5775"]</xpath>
+        </test>
+        
+        <!--Freising-->
+        <test>
+            <url>/o:cantus.freising/sdef:TEI/get?mode=view:structure&amp;locale=de</url>
+            <xpath>//*[@id="CH2.2"]</xpath>
+        </test>
+        
+        <!--Emmeram-->
+        <test>
+            <url>/o:cantus.emmeram.ur/sdef:TEI/get?mode=view:edition&amp;locale=de</url>
+            <xpath>//*[@id="feast.01011000.5"]</xpath>
+        </test>
+        
+        <!--Regensburg-->
+        <test>
+            <url>/o:cantus.regensburg/sdef:TEI/get?mode=view:structure&amp;locale=de</url>
+            <xpath>//*[@id="maintext"]</xpath>
+        </test>
+    
+        <!--Brixen-->
+        <test>
+            <url>/o:cantus.brixen/sdef:TEI/get?mode=view:facs&amp;locale=de</url>
+            <xpath>//*[@id="feast.14020200.84"]</xpath>
+        </test>
+    
+        <!--Mossburg-->
+        <test>
+            <url>/o:cantus.moosburg/sdef:TEI/get?mode=view:edition&amp;locale=de</url>
+            <xpath>//*[@id="feast.nocdb.4"]</xpath>
+        </test>
+    
+        <!--Seckau-->
+        <test>
+            <url>/o:cantus.seckau1.pac/sdef:TEI/get?mode=view:variants&amp;locale=de</url>
+            <xpath>//*[@id="feast.01011000.2"]</xpath>
+        </test>
+        
+        <!--Hirsau-->
+        <test>
+            <url>/o:cantus.hirsau/sdef:TEI/get?mode=view:structure&amp;locale=de</url>
+            <xpath>//*[@id="CH256"]</xpath>
+        </test>
+    
+        <!--Sekundärquellen-->
+        <test>
+            <url>/o:cantus.passau.sp/sdef:TEI/get?mode=view:secondary&amp;locale=de</url>
+            <xpath>/xhtml:html/xhtml:body/xhtml:main/xhtml:section/xhtml:article/xhtml:div/xhtml:p[7]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.stnikola/sdef:TEI/get?mode=view:secondary&amp;locale=de</url>
+            <xpath>/xhtml:html/xhtml:body/xhtml:main/xhtml:section/xhtml:article/xhtml:div/xhtml:p/xhtml:a</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.salzburg.sal/sdef:TEI/get?mode=view:secondary&amp;locale=de</url>
+            <xpath>/xhtml:html/xhtml:body/xhtml:main/xhtml:section/xhtml:article/xhtml:div/xhtml:p[7]/xhtml:a</xpath>
+        </test>
+        
+        <!--Team-Seite-->
+        <test>
+            <url>/archive/objects/context:cantus/methods/sdef:Context/get?mode=team&amp;locale=de</url>
+            <xpath>/xhtml:html/xhtml:body/xhtml:main/xhtml:section/xhtml:article/xhtml:div/xhtml:p[6]</xpath>
+        </test>
+        
+        <!--Search-->
+        <test>
+            <url>/archive/objects/query:cantus/methods/sdef:Query/get?params=%241%7Cpapa</url>
+            <xpath>//*[@id="LO_passau_feast_14101400_437"]</xpath>
+        </test>
+        
+    <!--XML Tests-->
+        <test>
+            <url>/o:cantus.salzburg.sal/TEI_SOURCE</url>
+            <xpath>//*[@xml:id="V.2652"]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.regensburg/RDF</url>
+            <xpath>//cantus:LO</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.seckau3/TEI_SOURCE</url>
+            <xpath>//*[@xml:id="feast.14071100.56"]</xpath>
+        </test>
+        <test>
+            <url>/o:cantus.klosterneuburg.knb3/TEI_SOURCE</url>
+            <xpath>//*[@xml:id="V.69"]</xpath>
+        </test>
+
+    <!--****************************
+               HTML Tests
+    ********************************-->
+
+    <!--Hier bitte auch immer Reihenfole beachten, zuerst <url> angeben-->
+
+    <!--<test>
+        <!-\-Eingabe führt direkt auf gewählte server property (in diesem Fall https://gams.uni-graz.at)-\->
+        <url></url>
+        <matcher>h1:matches(^GAMS$)</matcher>
+    </test>-->
+
+
+
+
+
+    <!-- ************************
+               JSON TESTs
+    *****************************-->
+
+    <test>
+        <url>/archive/objects/query:cantus/methods/sdef:Query/getJSON?params=%241%7Cpapa</url>
+        <json>[117]</json>
+    </test>
+    <test>
+        <url>/archive/objects/query:cantus/methods/sdef:Query/getJSON?params=%241%7Csalzburg</url>
+        <json>[1]</json>
+    </test>
+
+
+    <!--So würde gegen ein JSON-array getestet werden. Der Test erkennt automatisch wenn er auf ein array stößt
+     und verlangt dann die Angabe der Größe in eckigen Klammern-->
+    <!--<test>-->
+    <!--<url>https://jsonplaceholder.typicode.com/posts</url>-->
+    <!--<json>[100]</json>-->
+    <!--</test>-->
+
+    <!-- Testet JSON-Dokument auf angegebenen Teilausdruck wenn JSON Objekt-->
+    <!--<test>-->
+    <!--<url>https://jsonplaceholder.typicode.com/posts/1</url>-->
+    <!--<json>{id: 1}</json>-->
+    <!--</test>-->
+
+
+
+</TestCase>

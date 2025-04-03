@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase name="ldr"> Projektkürzel angeben
+
+    <!--Zur Erinnerung falls sich das Programm beenden sollte, bitte ins logfile-->
+    <!--schauen (../logs/prints.txt)-->
+
+    <!--Am Anfang namespaces angeben: Zuerst <prefix> dann <uri>, REIHENFOLGE ist wichtig. -->
+
+    <!--*********************
+            Namespaces
+    *************************-->
+
+    <namespaces>
+        <namespace>
+            <prefix>xhtml</prefix>
+            <uri>http://www.w3.org/1999/xhtml</uri>
+        </namespace>
+        <namespace>
+            <prefix>rdf</prefix>
+            <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+        </namespace>
+        <namespace>
+            <prefix>dc</prefix>
+            <uri>http://purl.org/dc/elements/1.1/</uri>
+        </namespace>
+        <namespace>
+            <prefix>tei</prefix>
+            <uri>http://www.tei-c.org/ns/1.0</uri>
+        </namespace>
+        <namespace>
+            <prefix>cc</prefix>
+            <uri>http://web.resource.org/cc/</uri>
+        </namespace>
+    </namespaces>
+
+
+    <!--*********************
+            XML TESTS
+    *************************-->
+    <test>
+        <url>/o:ldr.lieddrucke/TEI_SOURCE</url>
+        <xpath>//tei:biblFull</xpath>
+    </test>
+    <test>
+        <url>/o:ldr.person/TEI_SOURCE</url>
+        <xpath>//tei:person</xpath>
+    </test>
+    <test>
+        <url>/o:ldr.place/TEI_SOURCE</url>
+        <xpath>//tei:place</xpath>
+    </test>
+    <!-- volltextsuche funktionierten nicht :(-->
+    <!-- <test>
+        <url>/query:htx.search-fulltext?params=$1|John%20Lockwood;$2|%5Bobject%20HTMLInputElement%5D</url>
+        <xpath>//xhtml:article[@id='search_result']//xhtml:tr[@id="e_7274"]</xpath>
+    </test>​ -->
+    <test>
+        <url>/query:ldr.fulltext?params=%241%7CSamuel</url>
+        <xpath>//xhtml:div[@id="LDR.204"]</xpath>
+    </test>​
+    <test>
+        <url>/query:ldr.fulltext?params=%241%7CSamuel</url>
+        <matcher>h3:matches(^1543$)</matcher>
+    </test>
+
+
+    <!--****************************
+               HTML Tests
+    ********************************-->
+    <!-- Wenn Datenfeld im ausklappbaren Dings existiert-->
+    <test>
+        <url>/o:ldr.lieddrucke</url>
+        <matcher>b:matches(^Medientyp$)</matcher>
+    </test>
+    <!-- und wenn da was drinnen steht -->
+    <test>
+        <url>/o:ldr.lieddrucke</url>
+        <matcher>b:matches(^Medientyp$)</matcher>
+    </test>
+    <!-- HOME -->
+    <test>
+        <url>/o:ldr.lieddrucke</url>
+        <matcher>a:matches(^LIEDDRUCKE$)</matcher>
+    </test>
+    <!-- orte -->
+    <test>
+        <url>/o:ldr.place</url>
+        <matcher>a:matches(^Bamberg$)</matcher>
+    </test>
+    <!-- B Überschrift für alle namen die mit B beginnen -->
+    <test>
+        <url>/o:ldr.lieddrucke</url>
+        <matcher>td:matches(^1524$)</matcher>
+    </test>
+    <!-- B Überschrift für alle namen die mit B beginnen -->
+    <test>
+        <url>/archive/objects/o:ldr.person/methods/sdef:TEI/get?mode=composer</url>
+        <matcher>h3:matches(^B$)</matcher>
+    </test>
+    <!-- fulltext -->
+    <test>
+        <url>/query:ldr.fulltext?params=%241%7Cjesus</url>
+        <matcher>h3:matches(^1524$)</matcher>
+    </test>
+
+
+    <!--***********************
+            StatusCode Tests
+    ***************************-->
+
+    <!--Beispiel für einen Statuscode test-->
+   <test>
+        <url>/context:ldr</url>
+        <statuscode>200</statuscode>
+    </test>
+
+</TestCase>

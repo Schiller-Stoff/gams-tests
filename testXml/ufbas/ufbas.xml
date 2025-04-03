@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase name="ufbas"> Projektkürzel angeben
+
+    <!--Zur Erinnerung falls sich das Programm beenden sollte, bitte ins logfile-->
+    <!--schauen (../logs/prints.txt)-->
+
+    <!--Am Anfang namespaces angeben: Zuerst <prefix> dann <uri>, REIHENFOLGE ist wichtig. -->
+
+    <!--*********************
+            Namespaces
+    *************************-->
+
+    <namespaces>
+        <namespace>
+            <prefix>xhtml</prefix>
+            <uri>http://www.w3.org/1999/xhtml</uri>
+        </namespace>
+        <namespace>
+            <prefix>rdf</prefix>
+            <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#</uri>
+        </namespace>
+        <namespace>
+            <prefix>dc</prefix>
+            <uri>http://purl.org/dc/elements/1.1/</uri>
+        </namespace>
+        <namespace>
+            <prefix>tei</prefix>
+            <uri>http://www.tei-c.org/ns/1.0</uri>
+        </namespace>
+        <namespace>
+            <prefix>cc</prefix>
+            <uri>http://web.resource.org/cc/</uri>
+        </namespace>
+    </namespaces>
+
+
+    <!--*********************
+            XML TESTS
+    *************************-->
+    <test>
+        <url>/o:ufbas.1563/TEI_SOURCE</url>
+        <xpath>//tei:persName[@ana]</xpath>
+    </test>
+    <test>
+        <url>/o:ufbas.kategorien/TEI_SOURCE</url>
+        <xpath>//tei:taxonomy/tei:category</xpath>
+    </test>
+
+    
+    <!--****************************
+               HTML Tests
+    ********************************-->
+    <test>
+        <url>/o:ufbas.1563</url>
+        <matcher>button:matches(^Täter$)</matcher>
+    </test>​
+    <test>
+        <url>/archive/objects/context:ufbas/methods/sdef:Context/get?mode=about</url>
+        <matcher>b:matches(^Das Projekt$)</matcher>
+    </test>
+    <test>
+        <url>/o:ufbas.kategorien</url>
+        <matcher>a:matches(^Vorinstanz$)</matcher>
+    </test>
+    <test>
+        <url>/query:ufbas.volltext?params=%241%7Cwyn</url>
+        <xpath>//xhtml:div[@id="Eintrag-2"]</xpath>
+    </test>​
+    <!-- advanced search -->
+    <test>
+        <url>/query:ufbas.search?params=%241%7Cw%5By%2Ci%5Dn%3B%242%7C%20FILTER(regex(%253Finhalt%2C%22%5C%5Cbw%5By%252Ci%5Dn%5C%5Cb%22%2C%22i%22))</url>
+        <xpath>//xhtml:div[@id="Eintrag-151"]</xpath>
+    </test>​
+    <test>
+        <url>/query:ufbas.search?params=%241%7Cw%5By%2Ci%5Dn%3B%242%7C%20FILTER(regex(%253Finhalt%2C%22%5C%5Cbw%5By%252Ci%5Dn%5C%5Cb%22%2C%22i%22))</url>
+        <matcher>h3:matches(^Jergj Schindler von Hölstein$)</matcher>
+    </test>​
+    <!-- databasket -->
+    <test>
+        <url>/archive/objects/context:ufbas/methods/sdef:Context/get?mode=datenkorb</url>
+        <matcher>h3:matches(^Datenkorb$)</matcher>
+    </test>​
+    
+   
+    
+    
+
+    <!--***********************
+            StatusCode Tests
+    ***************************-->
+   <test>
+        <url>/context:ufbas</url>
+        <statuscode>200</statuscode>
+    </test>
+
+</TestCase>

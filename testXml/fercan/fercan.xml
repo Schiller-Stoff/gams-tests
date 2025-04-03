@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase name="fercan"> 
+
+    <!--Zur Erinnerung falls sich das Programm beenden sollte, bitte ins logfile-->
+    <!--schauen (../logs/prints.txt)-->
+
+    <!--Am Anfang namespaces angeben: Zuerst <prefix> dann <uri>, REIHENFOLGE ist wichtig. -->
+
+    <!--*********************
+            Namespaces
+    *************************-->
+
+    <namespaces>
+        <namespace>
+            <prefix>xhtml</prefix>
+            <uri>http://www.w3.org/1999/xhtml</uri>
+        </namespace>
+    </namespaces>
+    
+    
+    <!-- Testet XML-Dokument auf count(xpath) &gt; 0 -->
+    
+    <!-- tei metadaten -->
+    <test>
+        <url>/o:fercan.1</url>
+        <xpath>//xhtml:div[@class='col-sm-6 transcription']</xpath>
+    </test>
+    
+    <!-- openseadragon in tei ansicht -->
+    <!--<test>
+        <url>/o:fercan.1</url>
+        <xpath>//xhtml:div[@class='openseadragon-container']</xpath>
+    </test>-->
+    
+    <!-- bibliografie -->
+    <test>
+        <url>/o:fercan.bibl</url>
+        <xpath>//xhtml:p[@class='bib']</xpath>
+    </test>
+    
+    
+    <!-- static content über mode -->
+    <test>
+        <url>/archive/objects/context:fercan/methods/sdef:Context/get?mode=imprint</url>
+        <xpath>//xhtml:div[@class='panel']/xhtml:h3</xpath>
+    </test>
+    
+    <!-- skos -->
+    <test>
+        <url>/o:fercan.arch</url>
+        <xpath>//xhtml:div[@class='panel']/xhtml:ul/xhtml:li</xpath>
+    </test>
+    <!--
+    <!-\- static mit karte -\->
+    <test>
+        <url>/archive/objects/context:fercan/methods/sdef:Context/get?mode=map</url>
+        <xpath>/html/body/main/section/article/div[@class='panel']/div[@class='leaflet-container']</xpath>
+    </test>
+    -->
+    <!-- kontext liste -->
+    <test>
+        <url>/context:fercan.dce.abirenes</url>
+        <xpath>//xhtml:div[@id='results']/xhtml:ol[@class='result']/xhtml:li</xpath>
+    </test>
+    
+    <!-- kontext kartenansicht -->
+    <!--<test>
+        <url>/context:fercan.dce.abirenes</url>
+        <xpath>/html/body/main/section/article[2]/div[@class='panel']/div[@id='results']/div[@class='leaflet-container']</xpath>
+    </test>-->
+    
+    <!-- suche gsearch -->
+    <test>
+        <url>/search/gsearch?query=&amp;hitPageSize=10&amp;hitPageStart=1&amp;pid=fercan&amp;x2=https%3A%2F%2Fgams.uni-graz.at%2Ffercan%2Ffercan-search.xsl</url>
+        <xpath>//xhtml:div[@id='search']/xhtml:ol[@class='result']/xhtml:li</xpath>
+    </test>
+    
+   <!-- <!-\- Testet JSON-Dokument auf angegebenen Teilausdruck -\->
+    <test>
+        <url>/o:fercan.1/sdef:IIIF/getTileSources</url>
+        <json>{id: 1}</json>
+    </test>-->
+
+    <!--****************************
+               HTML Tests
+    ********************************-->
+
+    <!--Hier bitte auch immer Reihenfole beachten, zuerst <url> angeben-->
+
+ <!--   <test>
+        <!-\-Eingabe führt direkt auf gewählte server property (in diesem Fall https://gams.uni-graz.at)-\->
+        <url></url>
+        <matcher>h1:matches(^gams$)</matcher>
+    </test>
+
+-->
+
+
+
+    <!--***********************
+            StatusCode Tests
+    ***************************-->
+
+    <!--Beispiel für einen Statuscode test-->
+   <!-- <test>
+        <url>/context:skerbisch</url>
+        <statuscode>200</statuscode>
+    </test>
+
+-->
+
+
+
+    <!-- ************************
+               JSON TESTs
+    *****************************-->
+
+    <!--So würde gegen ein JSON-array getestet werden. Der Test erkennt automatisch wenn er auf ein array stößt
+     und verlangt dann die Angabe der Größe in eckigen Klammern-->
+    <!--<test>-->
+    <!--<url>https://jsonplaceholder.typicode.com/posts</url>-->
+    <!--<json>[100]</json>-->
+<!--    </test>-->
+
+    <!-- Testet JSON-Dokument auf angegebenen Teilausdruck wenn JSON Objekt-->
+    <!--<test>-->
+    <!--<url>https://jsonplaceholder.typicode.com/posts/1</url>-->
+    <!--<json>{id: 1}</json>-->
+    <!--</test>-->
+
+
+
+</TestCase>
